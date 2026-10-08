@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: stored-xss-guestbook
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      # Change this before you deploy so players can't guess it.
+      - key: FLAG
+        value: CTF{st0red_xss_pops_the_admin}

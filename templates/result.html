@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Report {{ r.id }}{% endblock %}
+{% block content %}
+  {% if r.status in ('pending',) %}
+    <meta http-equiv="refresh" content="2">
+  {% endif %}
+  <p><a href="{{ url_for('index') }}">&larr; back to guestbook</a></p>
+  <h1>Admin report</h1>
+
+  {% if r.status == 'pending' %}
+    <div class="card">
+      <p>⏳ The admin bot is opening message #{{ r.comment_id }}...</p>
+      <p class="note">This page refreshes automatically.</p>
+    </div>
+  {% elif r.status == 'solved' %}
+    <div class="card">
+      <p>✅ Your payload executed in the admin's browser. Here is your flag:</p>
+      <div class="flag">{{ r.flag }}</div>
+    </div>
+  {% elif r.status == 'no-xss' %}
+    <div class="card">
+      <p>😴 The admin opened message #{{ r.comment_id }}, but no JavaScript ran.</p>
+      <p class="note">Your message needs to execute JS (e.g. pop a dialog) when the page loads. Edit your payload and report again.</p>
+    </div>
+  {% else %}
+    <div class="card">
+      <p>⚠️ Something went wrong checking your report.</p>
+      <p class="note">{{ r.status }}</p>
+    </div>
+  {% endif %}
+{% endblock %}

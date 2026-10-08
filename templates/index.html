@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Guestbook{% endblock %}
+{% block content %}
+  <h1>📖 The Guestbook</h1>
+  <p class="sub">Leave a message for the admin. All messages are public.</p>
+
+  <div class="card">
+    <form action="{{ url_for('post') }}" method="post">
+      <label>Name</label>
+      <input name="name" placeholder="your name" maxlength="60">
+      <label>Message</label>
+      <textarea name="body" placeholder="say hi..." maxlength="2000"></textarea>
+      <button type="submit">Sign guestbook</button>
+    </form>
+  </div>
+
+  <hr>
+  <h2 style="font-size:1.1rem">Recent messages</h2>
+
+  {% for c in comments %}
+    <div class="card">
+      <div class="meta">
+        <strong>{{ c.name }}</strong> · {{ c.created }} ·
+        <a href="{{ url_for('view', cid=c.id) }}">permalink</a>
+      </div>
+      {# VULNERABLE ON PURPOSE: stored comment rendered without escaping. #}
+      <div class="body">{{ c.body | safe }}</div>
+    </div>
+  {% else %}
+    <p class="note">No messages yet. Be the first!</p>
+  {% endfor %}
+{% endblock %}

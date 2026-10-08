@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Guestbook{% endblock %}</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 16px;
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #0e1116; color: #e6edf3;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; margin: 0 0 4px; }
+    .sub { color: #8b949e; margin: 0 0 24px; }
+    a { color: #58a6ff; }
+    form { margin: 0; }
+    input, textarea {
+      width: 100%; padding: 10px 12px; margin: 6px 0 12px;
+      background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+      color: #e6edf3; font: inherit;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    button {
+      padding: 9px 16px; border: 0; border-radius: 8px; cursor: pointer;
+      background: #238636; color: #fff; font: inherit; font-weight: 600;
+    }
+    button.secondary { background: #30363d; }
+    .card {
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 14px 16px; margin: 12px 0;
+    }
+    .meta { color: #8b949e; font-size: .85rem; margin-bottom: 6px; }
+    .body { word-break: break-word; }
+    .flag {
+      background: #0d2818; border: 1px solid #238636; border-radius: 8px;
+      padding: 14px 16px; font-family: ui-monospace, monospace;
+      font-size: 1.05rem; color: #7ee787;
+    }
+    .note { color: #8b949e; font-size: .9rem; }
+    hr { border: 0; border-top: 1px solid #21262d; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
